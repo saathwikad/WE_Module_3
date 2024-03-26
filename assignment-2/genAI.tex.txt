@@ -1,0 +1,134 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Diaz Essay
+% LaTeX Template
+% Version 2.0 (13/1/19)
+%
+% This template originates from:
+% http://www.LaTeXTemplates.com
+%
+% Authors:
+% Vel (vel@LaTeXTemplates.com)
+% Nicolas Diaz (nsdiaz@uc.cl)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[11pt]{diazessay} % Font size (can be 10pt, 11pt or 12pt)
+\usepackage{hyperref}
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\title{\textbf{Developing strategies for the bidding card game "Diamonds" with GenAI} \\ {\Large\itshape Course Assignment - Women Engineers}} % Title and subtitle
+
+\author{\textbf{Saathwika D} \\ \textit{WE Cohort - 5}} % Author and institution
+
+\date{March 24, 2024} % Date, use \date{} for no date
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+\maketitle % Print the title section
+
+%----------------------------------------------------------------------------------------
+%	ABSTRACT AND KEYWORDS
+%----------------------------------------------------------------------------------------
+
+%\renewcommand{\abstractname}{Summary} % Uncomment to change the name of the abstract to something else
+
+
+
+
+%----------------------------------------------------------------------------------------
+%	ESSAY BODY
+%----------------------------------------------------------------------------------------
+
+\section*{Introduction}
+
+This report is an assignment that tried to explore the potential of GenAI to develop and analyze bidding strategies for the card game Diamonds. Through a structured approach, I tried to approach how Gemini, as the GenAI tool, can be utilized to:
+\begin{itemize}
+    \item Understand the Diamonds Card Game
+    \item Determine Bidding Stategies
+    \item Refinement of the results.
+\end{itemize}
+This report outlines the following structure for developing and analyzing bidding strategies for the card game - "Diamonds":
+\begin{itemize}
+    \item Problem Statement
+    \item Teaching Gemini the Game
+    \item Iterating upon strategy
+    \item Analysis
+    \item Conclusion
+\end{itemize}
+
+This study helps us understand how capable GenAI is for solving problems related to thinking and strategy.
+%------------------------------------------------
+
+\section*{Problem Statement}
+The game, "Diamonds" designed for either three or four players, involved strategic bidding and luck of the draw. Each player is dealt a hand of cards, consisting of the same suits except for diamonds.The banker shuffles the diamond cards before each round to ensure randomness in the game.
+\begin{wrapfigure}{l}{0.42\textwidth} % Inline image example, use an 'r' column type to position the figure on the right
+	\includegraphics[width=\linewidth]{Figures/cards.png}
+	\caption{Card Game}
+\end{wrapfigure}
+In every round, players bid one card from their hand. Success depends on smartly assessing card values and choosing bids strategically, aiming for the highest-value diamond card to win.
+Once bids are made, the banker reveals the selected diamond card for that round. The player who bid the highest-value card claims victory for the round, and their score is updated accordingly, reflecting the value of the chosen diamond card. This dynamic scoring system adds layers of complexity and strategy, as players must balance risk and reward in their bidding strategies.
+If multiple players have the highest bid with the same card, the points from the diamond card are divided equally among them. This ensures fairness and avoids disputes over scoring.
+\subsection*{Card Ranking}
+$2 < 3 < 4 < 5 < 6 < 7 < 8 < 9 < \textrm{T} < \textrm{J} < \textrm{Q} < \textrm{K} < \textrm{A}$
+
+
+
+
+%------------------------------------------------
+
+\section*{Teaching GenAI(Gemini) the Game}
+
+In the beginning, I explained the basics of the "Diamonds" to Gemini, but it was a bit vague. I told Gemini about how many players there are, what the banker does, how bidding works, and how points are scored. Then, I asked Gemini to tell me what it understood. It tried, but it had some questions about the rules. So, I took the time to answer those questions and make things clearer. I explained the rules in more detail and gave examples to help Gemini understand better. The following is the game breakdown given by Gemini.
+\subsection*{Breakdown}
+\begin{itemize}
+    \item Players receive cards from a standard deck excluding diamonds.
+    \item A designated banker reveals diamond cards one at a time.
+    \item Players bid a card from their hand, with the highest bid (considering both suit and card rank) winning the round.
+    \item The winner claims points equal to the revealed diamond's value.
+    \item The game concludes when all diamond cards are revealed, with the highest scorer winning.
+\end{itemize}
+\subsection*{Key Details Established}
+\begin{itemize}
+    \item Traditional card ranking (Ace high) applies to non-diamond suits.
+    \item Bluffing is not allowed; bids must be from the player's hand.
+    \item Ties in bids are resolved by splitting points among the winning players.
+\end{itemize}
+\subsection*{Preliminary Strategy}
+The first strategy focuses on using high value cards smartly throughout the game. It suggests playing them early when the diamond value revealed is low, ensuring you get points. You should also watch what cards your opponents bid to understand how strong their hands are. Sometimes, you can use a bit of trickery by bidding lower cards to trick opponents into wasting their high cards. But be careful not to risk losing your high cards too soon. It's all about finding the right balance between taking risks and gaining points with valuable diamonds. This strategy aims to help you make better decisions and improve your chances of winning.
+\subsection*{Algorithmic Approach}
+Gemini came up with functions to manage player scores, choose data structures for storage and retrieval of game outcomes.
+\newline
+\textbf{Function Definitions}
+
+\begin{itemize}
+    \item \texttt{deal\_cards(players, cards\_per\_player):} Deals cards to players (excluding diamonds).
+    \item \texttt{get\_bid(player):} Prompts a player for their bid and validates it against the player's hand.
+    \item \texttt{find\_winner(bids):} Finds the player(s) with the highest bid value.
+    \item \texttt{update\_score(player, diamond\_card\_value):} Updates the player's score with the diamond card value.
+    \item \texttt{divide\_points(players, points):} Divides points equally among a group of players (used for ties).
+\end{itemize}
+
+\subsection*{Conclusion}
+Gemini demonstrated understanding of "Game of Diamonds" by asking good questions and showed the ability to generate code with minor adjustments. Through clarification, it learned the game well, showcasing the importance of clear communication in AI learning.
+%----------------------------------------------------------------------------------------
+%	BIBLIOGRAPHY
+%----------------------------------------------------------------------------------------
+
+\bibliographystyle{unsrt}
+
+\bibliography{sample.bib}
+\href{https://g.co/gemini/share/11fc2738fef8}{Gemini Conversation}
+%----------------------------------------------------------------------------------------
+
+\end{document}
