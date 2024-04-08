@@ -1,5 +1,6 @@
 import pygame
 import sys
+import random
 
 # Initialize Pygame
 pygame.init()
@@ -34,10 +35,10 @@ NEW_FRAME = 2
 current_state = MAIN_MENU
 
 def display_instructions():
-    screen.fill(WHITE)
+    screen.fill(BLACK)  # Fill the screen with black color
     # Display title
     title_font = pygame.font.Font(None, 48)
-    title_text = title_font.render("Instructions", True, BLACK)
+    title_text = title_font.render("Instructions", True, WHITE)  # Set title text color to white
     title_text_rect = title_text.get_rect(center=(SCREEN_WIDTH // 2, 50))
     screen.blit(title_text, title_text_rect)
     # Display instructions
@@ -52,21 +53,23 @@ def display_instructions():
         "7. The player with the most points at the end wins the game."
     ]
     for i, text in enumerate(instructions):
-        text_surface = instruction_font.render(text, True, BLACK)
+        text_surface = instruction_font.render(text, True, WHITE)  # Set instruction text color to white
         text_rect = text_surface.get_rect(center=(SCREEN_WIDTH // 2, 150 + i * 30))
         screen.blit(text_surface, text_rect)
     # Draw button
-    button_width = 200
-    button_height = 50
-    button_color = BLACK
-    button_text_color = WHITE
-    button_font = pygame.font.Font(None, 36)
-
     button_text = button_font.render("Next Frame", True, button_text_color)
     button_text_rect = button_text.get_rect(center=(SCREEN_WIDTH // 2, 500))
     pygame.draw.rect(screen, button_color, (button_text_rect.topleft, (button_width, button_height)))
     screen.blit(button_text, button_text_rect)
-
+def display_new_frame():
+    screen.fill(WHITE)  # Fill the screen with white color
+    # Display randomly chosen value
+    values = [2, 3, 4, 5, 6, 7, 8, 9, 10, 'Q', 'J', 'K', 'A']
+    
+    for i in range(13):
+        chosen_value = random.choice(values)
+        values.remove(chosen_value)
+        print(chosen_value) 
         
 running = True
 while running:
@@ -83,7 +86,8 @@ while running:
                 elif current_state == INSTRUCTIONS:
                     print("Button clicked! Redirecting to new frame...")
                     current_state = NEW_FRAME
-
+                    display_new_frame()
+                    
     # Fill the background with the resized image
     screen.blit(background_image, (0, 0))
 
@@ -94,6 +98,8 @@ while running:
         screen.blit(button_text, button_text_rect)
     elif current_state == INSTRUCTIONS:
         display_instructions()
+    elif current_state == NEW_FRAME:
+        display_new_frame()
 
     # Update the display
     pygame.display.flip()
